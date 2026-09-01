@@ -48,33 +48,33 @@ Deploy the website.
 Upload to GitHub Pages for free hosting.
 
 ## PROGRAM
-APP.jsx
+APP.js
 '''
-import React, { useState } from "react";
+ import { useState } from "react";
 import "./App.css";
 
 function App() {
   const [display, setDisplay] = useState("");
 
   const handleClick = (value) => {
-    setDisplay((prev) => prev + value);
+    setDisplay(display + value);
+  };
+
+  const calculate = () => {
+    try {
+      setDisplay(eval(display).toString());
+    } catch {
+      setDisplay("Error");
+    }
   };
 
   const clearDisplay = () => {
     setDisplay("");
   };
 
-  const calculate = () => {
-    try {
-      const result = eval(display);
-      setDisplay(result.toString());
-    } catch {
-      setDisplay("Error");
-    }
-  };
-
   return (
-    <div className="calculator-container">
+    <div className="page">
+
       <div className="calculator">
         <h1>Simple Calculator</h1>
 
@@ -86,7 +86,7 @@ function App() {
         />
 
         <div className="buttons">
-          <button onClick={clearDisplay} className="clear">C</button>
+          <button className="clear" onClick={clearDisplay}>C</button>
           <button onClick={() => handleClick("/")}>÷</button>
           <button onClick={() => handleClick("*")}>×</button>
           <button onClick={() => handleClick("-")}>−</button>
@@ -99,126 +99,131 @@ function App() {
           <button onClick={() => handleClick("4")}>4</button>
           <button onClick={() => handleClick("5")}>5</button>
           <button onClick={() => handleClick("6")}>6</button>
-          <button onClick={() => handleClick(".")}>.</button>
+
+          <button className="equal" onClick={calculate}>=</button>
 
           <button onClick={() => handleClick("1")}>1</button>
           <button onClick={() => handleClick("2")}>2</button>
           <button onClick={() => handleClick("3")}>3</button>
-          <button onClick={calculate} className="equal">=</button>
 
-          <button
-            onClick={() => handleClick("0")}
-            className="zero"
-          >
-            0
-          </button>
+          <button className="zero" onClick={() => handleClick("0")}>0</button>
+          <button onClick={() => handleClick(".")}>.</button>
         </div>
       </div>
+
+      <footer>
+        Designed by Kaneimozhi | 212224040147
+      </footer>
+
     </div>
   );
 }
 
-export default App;
+export default App;     
 '''
 APP.css
 '''
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
-  background: #1f2937;
 }
 
-.calculator-container {
+.page {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(135deg, #283cba, #7045a5);
   padding: 20px;
 }
 
 .calculator {
-  width: 350px;
-  padding: 25px;
-  border-radius: 20px;
-  background: #111827;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  width: 330px;
+  padding: 24px;
+  border-radius: 18px;
+  background: #1d1f20;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
 }
 
-.calculator h1 {
-  color: white;
+h1 {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 26px;
+  color: white;
+  font-size: 30px;
+  margin: 0 0 20px;
 }
 
 .display {
   width: 100%;
-  height: 70px;
+  height: 65px;
   border: none;
-  outline: none;
   border-radius: 10px;
-  margin-bottom: 20px;
-  padding: 10px 15px;
-  text-align: right;
-  font-size: 30px;
-  background: #374151;
+  background: #292c2d;
   color: white;
+  font-size: 28px;
+  text-align: right;
+  padding: 10px;
+  margin-bottom: 18px;
 }
 
 .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 9px;
 }
 
 button {
-  height: 60px;
+  height: 58px;
   border: none;
-  border-radius: 12px;
-  font-size: 22px;
+  border-radius: 11px;
+  background: #303334;
+  color: white;
+  font-size: 21px;
   font-weight: bold;
   cursor: pointer;
-  background: #374151;
-  color: white;
-  transition: 0.2s;
 }
 
 button:hover {
-  transform: scale(1.05);
-  background: #4b5563;
+  background: #414445;
 }
 
 .clear {
-  background: #dc2626;
+  background: #d00000;
+}
+
+.clear:hover {
+  background: #ed1111;
 }
 
 .equal {
-  background: #16a34a;
+  background: #2140c4;
   grid-row: span 2;
-  height: 132px;
+}
+
+.equal:hover {
+  background: #3154e0;
 }
 
 .zero {
-  grid-column: span 3;
+  grid-column: span 2;
 }
 
-@media (max-width: 450px) {
-  .calculator {
-    width: 100%;
-  }
-
-  button {
-    height: 55px;
-  }
+footer {
+  margin-top: 20px;
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  font-weight: 500;
 }
 '''
 ## OUTPUT
-
+<img width="937" height="910" alt="Screenshot 2026-09-01 214212" src="https://github.com/user-attachments/assets/b36c1af2-7236-4b3a-b30e-2ce5a458f51f" />
+<img width="945" height="912" alt="Screenshot 2026-09-01 214417" src="https://github.com/user-attachments/assets/e9ee1071-bb9c-4911-a650-68cde1aef2a9" />
+<img width="946" height="916" alt="Screenshot 2026-09-01 214423" src="https://github.com/user-attachments/assets/bffc4012-6485-4279-ba86-67748dd9b42a" />
 
 ## RESULT
 The program for developing a simple calculator in React.js is executed successfully.
